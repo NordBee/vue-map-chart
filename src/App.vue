@@ -134,7 +134,8 @@ export default {
       node: document.createElement('style'),
       chromaScale: chroma.scale([this.$props.lowColor, this.$props.highColor]),
       keysLegend: [],
-      notShow: true
+      notShow: true,
+      blockId: 0,
     }
   },
   computed: {
@@ -175,13 +176,18 @@ export default {
         this.$props.countryData,
         this.chromaScale
       )
+      this.$data.node.id = this.blockId
       this.$data.node.innerHTML = getCombinedCssString(baseCss, dynamicMapCss)
     }
   },
   mounted () {
+    this.blockId = Math.floor(Math.random() * Math.floor(999999))
     document.body.appendChild(this.$data.node)
     this.renderMapCSS()
     this.notShowLegendEmpty()
+  },
+  beforeDestroy () {
+    document.body.removeChild(document.getElementById(this.blockId))
   },
   created () {
     this.notShowLegendEmpty()
