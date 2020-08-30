@@ -5,8 +5,7 @@
       @hoverCountry="onHoverCountry"
       @hoverLeaveCountry="onHoverLeaveCountry"
     />
-    <transition name="fade">
-      <div
+    <div
         v-show="legend.name && notShow"
         class="vue-map-legend"
         :style="
@@ -35,7 +34,6 @@
           <span v-if="notShow">{{ countryData[legend.code] || 0 }}</span>
         </div>
       </div>
-    </transition>
   </div>
 </template>
 
@@ -213,32 +211,19 @@ export default {
   z-index: 200;
   font-weight: 600;
   /* box-shadow: 0px 0px 15px rgba(182, 182, 182, 0.407); */
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .vue-map-legend-header {
   padding: 10px 15px;
+  border-radius: 8px 8px 0 0;
 }
 
 .vue-map-legend-content {
   padding: 10px 15px;
   background: #fff;
   font-weight: 500;
-  border-radius: 4px;
+  border-radius: 0 0 8px 8px;
   border-top: 0px solid #acacad;
-}
-
-
-.fade-left-enter-active,
-.fade-left-leave-active {
-  transition: all 0.3s;
-  opacity: 1;
-  transform: translateY(0px);
-}
-.fade-left-enter,
-.fade-left-leave-to {
-  opacity: 0;
-  transition: all 0.3s;
-  transform: translateX(50%);
 }
 </style>
