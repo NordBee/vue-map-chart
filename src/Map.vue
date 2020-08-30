@@ -218,15 +218,15 @@ export default {
 		const _this = this;
 
 		Array.from(paths).forEach(path => {
-			path.addEventListener('mouseenter', (e) => {
+			path.addEventListener('mousemove', (e) => {
 				_this.$emit(
 					'hoverCountry',
 					{
 						"code": e.target.id,
 						"name": e.target.attributes.title.value,
 						"position": {
-							"left": e.offsetX,
-							"top": e.offsetY
+							"left": e.layerX,
+							"top": e.layerY
 						}
 					}
 				);
